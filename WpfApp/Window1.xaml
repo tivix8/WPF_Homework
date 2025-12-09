@@ -5,65 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Тест" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-            <TextBlock Text="Мои задачи" FontSize="24" Foreground="Black"/>
-            <TextBlock x:Name="TaskCounter" FontSize="18" Margin="10,5,0,0"/>
+
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock x:Name="TitleText" Text="Тест по истории" 
+                      FontSize="24" FontWeight="Bold"/>
+            <TextBlock x:Name="QuestionNumberText" Text="Вопрос 1 из 15" 
+                      FontSize="16" Margin="0,10,0,0"/>
         </StackPanel>
-        <Grid Grid.Row="0" Margin="0,40,0,15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
 
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="NewTascerBar" Grid.Column="0" FontSize="16"
-                     Padding="12,8" Margin="0,0,10,0" BorderBrush="DarkGray"
-                     TextChanged="NewTascerBar_Change"
-                     KeyDown="NewTascerBar_KeyDown"
-                     ToolTip="Вставьте задачу и нажмите Enter или кнопку"/>
-            <Button Content="Добавить"
-                    Grid.Column="1"
-                    Width="90"
-                    Padding="10,8"
-                    FontSize="14"
-                    Click="AddTask_Click"
-                    IsEnabled="False"
-                    x:Name="AddButton"/>
-        </Grid>
-        <ListBox x:Name="TaskList" Grid.Row="1" Background="Transparent"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 SelectionChanged="TaskList_Changed">
-            <DataTemplate>
-                <Border Background="Red" Margin="0,0,0,8" Padding="12,10"
-                        CornerRadius="8" BorderBrush="#e0e0e0">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <CheckBox Grid.Column="0"
-                                  IsChecked="{Binding IsCompleted}"
-                                  Checked="TaskCheckbox_Cheked"
-                                  VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Text}"
-                                   FontSize="16" Margin="10,0"
-                                   VerticalAlignment="Center"/>
-                        <Button Content="x" Grid.Column="2" Width="28" Height="28"
-                                FontSize="18" Tag="{Binding}" Click="DeleteTask_Click"
-                                ToolTip="Удалить Задачу"/>
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </ListBox>
+        <!-- Область с вопросом и вариантами -->
+        <ScrollViewer Grid.Row="1" Margin="10">
+            <StackPanel>
+                <TextBlock x:Name="QuestionText" Text="Текст вопроса" 
+                          FontSize="18" TextWrapping="Wrap" Margin="0,0,0,20"/>
 
+                <StackPanel x:Name="AnswersPanel">
+                    
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="PrevButton" Content="Назад" Width="100" Margin="5" Click="PrevButton_Click"/>
+            <Button x:Name="NextButton" Content="Следующий" Width="100" Margin="5" Click="NextButton_Click"/>
+            <Button x:Name="FinishButton" Content="Завершить" Width="100" Margin="5" Click="FinishButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

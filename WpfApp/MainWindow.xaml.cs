@@ -23,29 +23,26 @@ namespace WpfApp {
         {
             InitializeComponent();
 
-            foreach (UIElement el in MainGrid.Children)
-            {
-                if (el is Button)
-                {
-                    ((Button)el).Click += Button_Click;
-                }
-            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            string str = (string)((Button)e.OriginalSource).Content;
+            Application.Current.Shutdown();
+        }
+        
 
-            if (str == "AC")
-                textLabel.Text = "";
-            else if(str == "=")
-            {
-                string value = new DataTable().Compute(textLabel.Text, null).ToString();
-                textLabel.Text = value;
-            }
+        private void OpenCalculator_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 window2 = new Window2();
+            window2.Show();
+        }
 
-            else
-                textLabel.Text += str;
+
+
+        private void OpenTest_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 window1 = new Window1();
+            window1.Show();
         }
     }
 }
